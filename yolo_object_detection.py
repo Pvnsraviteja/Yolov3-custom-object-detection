@@ -11,7 +11,7 @@ net = cv2.dnn.readNet("yolov3_training_last.weights", "yolov3_testing.cfg")
 classes = ["screw"]
 
 # Images path
-images_path = glob.glob(r"C:\Users\ravit\OneDrive\Desktop\screw\*.jpg")
+images_path = glob.glob(r"C:\Users\ravit\OneDrive\Desktop\test\2020-11-11_14-07-09_266.jpg")
 
 
 
@@ -61,6 +61,8 @@ for img_path in images_path:
 
     indexes = cv2.dnn.NMSBoxes(boxes, confidences, 0.5, 0.4)
     print(indexes)
+
+
     font = cv2.FONT_HERSHEY_PLAIN
     for i in range(len(boxes)):
         if i in indexes:
@@ -72,6 +74,12 @@ for img_path in images_path:
 
 
     cv2.imshow("Image", img)
+
+
+    number_of_objects_in_image = len(boxes)
+
+    print("The number of objects in this image: ", str(number_of_objects_in_image))
+
     key = cv2.waitKey(0)
 
 cv2.destroyAllWindows()
